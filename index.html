@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var radiologia = [
+        {hora: '11:00', ESPECIALISTA: 'IGNACIO SCHULZ', PACIENTE: 'FRANCISCA ROJAS', RUT: '9878782-1', PREVISION: 'FONASA'},
+        {hora: '11:30', ESPECIALISTA: 'FEDERICO SUBERCASEAUX', PACIENTE: 'PAMELA ESTRADA', RUT: '15345241-3', PREVISION: 'ISAPRE'},
+        {hora: '15:00', ESPECIALISTA: 'FERNANDO WURTHZ', PACIENTE: 'ARMANDO LUNA', RUT: '16445345-9', PREVISION: 'ISAPRE'},
+        {hora: '15:30', ESPECIALISTA: 'ANA MARIA GODOY', PACIENTE: 'MANUEL GODOY', RUT: '17666419-0', PREVISION: 'FONASA'},
+        {hora: '16:00', ESPECIALISTA: 'PATRICIA SUAZO', PACIENTE: 'RAMON ULLOA', RUT: '14989389-K', PREVISION: 'FONASA'}
+        ]
+        var traumatologia = [
+        {hora: '8:00', ESPECIALISTA: 'MARIA PAZ ALTUZARRA', PACIENTE: 'PAULA SANCHEZ', RUT: '15554774-5', PREVISION: 'FONASA'},
+        {hora: '10:00', ESPECIALISTA: 'RAUL ARAYA', PACIENTE: 'ANGELICA NAVAS', RUT: '15444147-9', PREVISION: 'ISAPRE'},
+        {hora: '10:30', ESPECIALISTA: 'MARIA ARRIAGADA', PACIENTE: 'ANA KLAPP', RUT: '17879423-9', PREVISION: 'ISAPRE'},
+        {hora: '11:00', ESPECIALISTA: 'ALEJANDRO BADILLA', PACIENTE: 'FELIPE MARDONES', RUT: '1547423-6', PREVISION: 'ISAPRE'},
+        {hora: '11:30', ESPECIALISTA: 'CECILIA BUDNIK', PACIENTE: 'DIEGO MARRE', RUT: '16554741-K', PREVISION: 'FONASA'},
+        {hora: '12:00', ESPECIALISTA: 'ARTURO CAVAGNARO', PACIENTE: 'CECILIA MENDEZ', RUT: '9747535-8', PREVISION: 'ISAPRE'},
+        {hora: '12:30', ESPECIALISTA: 'ANDRES KANACRI', PACIENTE: 'MARCIAL SUAZO', RUT: '11254785-5', PREVISION: 'ISAPRE'}
+        ]
+        var dental = [
+        {hora: '8:30', ESPECIALISTA: 'ANDREA ZUÑIGA', PACIENTE: 'MARCELA RETAMAL', RUT: '11123425-6', PREVISION: 'ISAPRE'},
+        {hora: '11:00', ESPECIALISTA: 'MARIA PIA ZAÑARTU', PACIENTE: 'ANGEL MUÑOZ', RUT: '9878789-2', PREVISION: 'ISAPRE'},
+        {hora: '11:30', ESPECIALISTA: 'SCARLETT WITTING', PACIENTE: 'MARIO KAST', RUT: '7998789-5', PREVISION: 'FONASA'},
+        {hora: '13:00', ESPECIALISTA: 'FRANCISCO VON TEUBER', PACIENTE: 'KARIN FERNANDEZ', RUT: '18887662-K', PREVISION: 'FONASA'},
+        {hora: '13:30', ESPECIALISTA: 'EDUARDO VIÑUELA', PACIENTE: 'HUGO SANCHEZ', RUT: '17665461-4', PREVISION: 'FONASA'},
+        {hora: '14:00', ESPECIALISTA: 'RAQUEL VILLASECA', PACIENTE: 'ANA SEPULVEDA', RUT: '14441281-0', PREVISION: 'ISAPRE'}
+    ]
+
+    /*
+    Dental[0]
+    Dental.length-1
+        document.write(`<p>Primera atención: ${Dental[0].PACIENTE} - ${Dental[0].PREVISION}</p>`)
+        document.write(`<p>Ultima atención: ${Dental[(Dental.length-1)].PACIENTE} - ${Dental[(Dental.length-1)].PREVISION}</p>`)
+*/
+
+
+// 2 eliminar el prime y el ultimo elemento del arreglo
+var first_element = radiologia.shift()
+var last_element = radiologia.pop()
+
+console.log(first_element, last_element, radiologia)
+
+
+/*   intrucciones 3 imprimir en la pagina html*/
+
+
+var filas_consultas = dental.map(consulta => `<li> ${consulta.hora} -
+                                                    ${consulta.ESPECIALISTA} -
+                                                    ${consulta.PACIENTE} -
+                                                    ${consulta.RUT} -
+                                                    ${consulta.PREVISION}</li>`)
+// console.log(filas_consulta)
+document.write('<ul>' + filas_consultas.join('\n') + '</ul>')
+
+/* 4.  Imprimir un listado total de todos los pacientes que se atendieron en el centro                           
+médico. Para ésto, deberá unir todos los nombres de pacientes e imprimir uno por                           
+cada párrafo.  
+ 
+   Ejemplo:  
+   FRANCISCA ROJAS 
+   PAMELA ESTRADA 
+   ARMANDO LUNA… 
+   */
+var nombres_pacientes = []
+radiologia.forEach(consulta => nombres_pacientes.push(consulta.PACIENTE))
+traumatologia.forEach(consulta => nombres_pacientes.push(consulta.PACIENTE))
+dental.forEach(consulta => nombres_pacientes.push(consulta.PACIENTE))
+
+var li_pacientes = nombres_pacientes.map(nombre => `<li>${ nombre }</li>`)
+document.write(`<ul>${li_pacientes.join('\n')}</ul>`)
+
+
+
+var pacientes_isapre = dental.filter(paciente => paciente.PREVISION == 'ISAPRE')
+                                .map(paciente => `<li>${paciente.PACIENTE} - ${paciente.PREVISION}</li>`)
+
+console.log(pacientes_isapre)
+document.write(`<ul>${pacientes_isapre.join('\n')}</ul>`)
+
+
+    </script>
+    
+</body>
+</html>
