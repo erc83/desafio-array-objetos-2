@@ -76,12 +76,22 @@ var li_pacientes = nombres_pacientes.map(nombre => `<li>${ nombre }</li>`)
 document.write(`<ul>${li_pacientes.join('\n')}</ul>`)
 
 
-
+//filtrar pacientes que indican ser de isapre en en la lista de consultas medicas de dental
 var pacientes_isapre = dental.filter(paciente => paciente.PREVISION == 'ISAPRE')
                                 .map(paciente => `<li>${paciente.PACIENTE} - ${paciente.PREVISION}</li>`)
 
 console.log(pacientes_isapre)
 document.write(`<ul>${pacientes_isapre.join('\n')}</ul>`)
+
+// filtrar  aquellos pacientes que indican ser fonasa en la lista de consultas medicas de traumatologia
+var pacientes_fonasa = traumatologia.filter(paciente => paciente.PREVISION == 'FONASA')
+                                .map(paciente => `<li>${paciente.PACIENTE} - ${paciente.PREVISION}</li>`)
+
+console.log(pacientes_fonasa)
+document.write(`<ul>${pacientes_fonasa.join('\n')}</ul>`)
+
+
+
 
 
     </script>
